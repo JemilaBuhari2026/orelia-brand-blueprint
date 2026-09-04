@@ -18,7 +18,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 lg:px-8">
         <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <img src={logo} alt="Hey! You Wellness" width={132} height={132} className="h-11 w-auto" />
+          <img src={logo} alt="Hey! You Wellness" width={567} height={486} className="h-12 w-auto sm:h-14" />
           <span className="sr-only">Hey! You Wellness</span>
         </Link>
 
