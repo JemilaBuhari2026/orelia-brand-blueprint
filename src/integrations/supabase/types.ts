@@ -14,16 +14,100 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_enquiries: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          enquiry_type: Database["public"]["Enums"]["enquiry_type"]
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          status: Database["public"]["Enums"]["enquiry_status"]
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          enquiry_type?: Database["public"]["Enums"]["enquiry_type"]
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          status?: Database["public"]["Enums"]["enquiry_status"]
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          enquiry_type?: Database["public"]["Enums"]["enquiry_type"]
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          status?: Database["public"]["Enums"]["enquiry_status"]
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          consent: boolean
+          consent_at: string
+          created_at: string
+          email: string
+          first_name: string | null
+          id: string
+          source: string
+          updated_at: string
+        }
+        Insert: {
+          consent?: boolean
+          consent_at?: string
+          created_at?: string
+          email: string
+          first_name?: string | null
+          id?: string
+          source?: string
+          updated_at?: string
+        }
+        Update: {
+          consent?: boolean
+          consent_at?: string
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          id?: string
+          source?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      subscribe_to_newsletter: {
+        Args: {
+          _consent?: boolean
+          _email: string
+          _first_name?: string
+          _source?: string
+        }
+        Returns: string
+      }
     }
     Enums: {
-      [_ in never]: never
+      enquiry_status: "new" | "in_progress" | "closed"
+      enquiry_type:
+        | "general"
+        | "corporate"
+        | "wholesale"
+        | "gifting"
+        | "vending"
+        | "partnership"
+        | "other"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +234,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      enquiry_status: ["new", "in_progress", "closed"],
+      enquiry_type: [
+        "general",
+        "corporate",
+        "wholesale",
+        "gifting",
+        "vending",
+        "partnership",
+        "other",
+      ],
+    },
   },
 } as const
