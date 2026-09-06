@@ -80,7 +80,7 @@ export const subscribeToNewsletter = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: result, error } = await supabaseAdmin.rpc("subscribe_to_newsletter", {
       _email: data.email,
-      _first_name: data.firstName ? data.firstName : null,
+      _first_name: data.firstName ? data.firstName : undefined,
       _source: data.source,
       _consent: true,
     });
