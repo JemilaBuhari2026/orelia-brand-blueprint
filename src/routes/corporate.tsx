@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout, PageHero } from "@/components/site/Layout";
+import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { products } from "@/lib/brand";
 
 export const Route = createFileRoute("/corporate")({
@@ -115,6 +116,24 @@ export function CorporatePage() {
         </div>
       </section>
 
+      <section id="enquiry" className="bg-secondary">
+        <div className="mx-auto max-w-3xl px-5 py-20 lg:px-8">
+          <p className="eyebrow text-primary">Enquiries</p>
+          <h2 className="mt-3 font-display text-4xl">Tell us what you need</h2>
+          <p className="mt-4 text-muted-foreground">
+            Corporate wellness, wholesale stocking or gifting — share the occasion, quantity and timing and we'll
+            come back to you.
+          </p>
+          <div className="mt-8">
+            <EnquiryForm
+              showCompany
+              defaultType="corporate"
+              types={["corporate", "wholesale", "gifting", "partnership", "other"]}
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-3xl px-5 py-20 text-center lg:px-8">
           <h2 className="font-display text-4xl">Let's talk volumes</h2>
@@ -122,7 +141,8 @@ export function CorporatePage() {
             Tell us the occasion, the quantity and the timing, and we'll come back with what's possible.
           </p>
           <Link
-            to="/contact"
+            to="/corporate"
+            hash="enquiry"
             className="mt-8 inline-flex rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
           >
             Start a conversation

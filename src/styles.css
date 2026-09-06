@@ -45,6 +45,8 @@
   --color-cream: var(--cream);
   --color-sand: var(--sand);
   --color-gold: var(--gold);
+  --color-leaf: var(--leaf);
+  --color-leaf-foreground: var(--leaf-foreground);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -63,6 +65,16 @@
 :root {
   --radius: 0.9rem;
 
+  /* --- Hey! You Wellness brand palette (single source of truth) --- */
+  --hey-you-purple: oklch(0.505 0.052 337); /* #7F6276 approved hero purple */
+  --hey-you-purple-light: oklch(0.62 0.07 337);
+  --hey-you-orange: oklch(0.639 0.148 55); /* #C86A1E burnt orange */
+  --hey-you-cocoa: oklch(0.315 0.055 45); /* #4A2C1E chocolate brown */
+  --hey-you-cream: oklch(0.964 0.012 78); /* #F3EBE3 warm cream */
+  --hey-you-sand: oklch(0.912 0.024 74);
+  --hey-you-gold: oklch(0.775 0.09 82);
+  --hey-you-leaf: oklch(0.55 0.075 145); /* restrained ingredient green */
+
   /* Warm cream canvas, chocolate brown text */
   --background: oklch(0.964 0.012 78);
   --foreground: oklch(0.29 0.045 45);
@@ -73,7 +85,7 @@
   --popover-foreground: oklch(0.29 0.045 45);
 
   /* Hero purple #7F6276 */
-  --primary: oklch(0.505 0.052 337);
+  --primary: var(--hey-you-purple);
   --primary-foreground: oklch(0.975 0.012 80);
 
   /* Warm sand */
@@ -84,7 +96,7 @@
   --muted-foreground: oklch(0.487 0.031 55);
 
   /* Burnt orange #C86A1E */
-  --accent: oklch(0.639 0.148 55);
+  --accent: var(--hey-you-orange);
   --accent-foreground: oklch(0.985 0.008 80);
 
   --destructive: oklch(0.55 0.19 27);
@@ -92,14 +104,16 @@
 
   --border: oklch(0.882 0.021 74);
   --input: oklch(0.882 0.021 74);
-  --ring: oklch(0.505 0.052 337);
+  --ring: var(--hey-you-purple);
 
   /* Chocolate brown #4A2C1E */
-  --cocoa: oklch(0.315 0.055 45);
+  --cocoa: var(--hey-you-cocoa);
   --cocoa-foreground: oklch(0.975 0.012 80);
-  --cream: oklch(0.964 0.012 78);
-  --sand: oklch(0.912 0.024 74);
-  --gold: oklch(0.775 0.09 82);
+  --cream: var(--hey-you-cream);
+  --sand: var(--hey-you-sand);
+  --gold: var(--hey-you-gold);
+  --leaf: var(--hey-you-leaf);
+  --leaf-foreground: oklch(0.975 0.012 80);
 
   --chart-1: oklch(0.505 0.052 337);
   --chart-2: oklch(0.639 0.148 55);
@@ -109,12 +123,12 @@
 
   --sidebar: oklch(0.964 0.012 78);
   --sidebar-foreground: oklch(0.29 0.045 45);
-  --sidebar-primary: oklch(0.505 0.052 337);
+  --sidebar-primary: var(--hey-you-purple);
   --sidebar-primary-foreground: oklch(0.975 0.012 80);
   --sidebar-accent: oklch(0.923 0.021 75);
   --sidebar-accent-foreground: oklch(0.29 0.045 45);
   --sidebar-border: oklch(0.882 0.021 74);
-  --sidebar-ring: oklch(0.505 0.052 337);
+  --sidebar-ring: var(--hey-you-purple);
 }
 
 .dark {
@@ -124,8 +138,10 @@
   --card-foreground: oklch(0.955 0.012 80);
   --popover: oklch(0.28 0.036 42);
   --popover-foreground: oklch(0.955 0.012 80);
-  --primary: oklch(0.63 0.062 337);
+  --primary: var(--hey-you-purple-light);
   --primary-foreground: oklch(0.18 0.03 40);
+  --leaf: oklch(0.66 0.08 145);
+  --leaf-foreground: oklch(0.18 0.03 40);
   --secondary: oklch(0.33 0.035 44);
   --secondary-foreground: oklch(0.955 0.012 80);
   --muted: oklch(0.33 0.035 44);
