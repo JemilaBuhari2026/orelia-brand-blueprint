@@ -21,6 +21,22 @@ export const Route = createFileRoute("/journal/$slug")({
           { name: "twitter:card", content: "summary_large_image" },
         ]
       : [],
+    scripts: loaderData
+      ? [
+          {
+            type: "application/ld+json",
+            children: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline: loaderData.title,
+              description: loaderData.excerpt,
+              articleSection: loaderData.cluster,
+              inLanguage: "en",
+              publisher: { "@type": "Organization", name: "Hey! You Wellness" },
+            }),
+          },
+        ]
+      : [],
   }),
   component: ArticlePage,
 });

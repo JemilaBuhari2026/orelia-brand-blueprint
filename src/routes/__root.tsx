@@ -100,6 +100,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              name: "Hey! You Wellness",
+              description:
+                "Premium modern African wellness food — good mood, good gut, good food.",
+              slogan: "Good Food. Good Mood. Better You.",
+            },
+            {
+              "@type": "WebSite",
+              name: "Hey! You Wellness",
+              inLanguage: "en",
+            },
+          ],
+        }),
+      },
+    ],
   }),
 
   shellComponent: RootShell,
