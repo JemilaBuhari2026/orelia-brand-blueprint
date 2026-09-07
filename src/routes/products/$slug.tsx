@@ -59,7 +59,7 @@ function ProductPage() {
             alt={product.name}
             width={1024}
             height={1024}
-            className="aspect-square w-full object-cover"
+            className="aspect-[4/5] w-full object-cover"
           />
         </div>
 
@@ -67,8 +67,8 @@ function ProductPage() {
           <p className="eyebrow text-accent">
             {product.family} · {product.role}
           </p>
-          <h1 className="mt-3 font-display text-5xl">{product.name}</h1>
-          <p className="mt-5 text-lg text-muted-foreground">{product.proposition}</p>
+          <h1 className="mt-3 display-1">{product.name}</h1>
+          <p className="mt-5 lede text-muted-foreground">{product.proposition}</p>
 
           <div className="mt-10 space-y-8">
             <div>
@@ -118,7 +118,7 @@ function ProductPage() {
       </section>
 
       <section className="shell section-y">
-        <h2 className="font-display text-3xl">More from the range</h2>
+        <h2 className="display-2">More from the range</h2>
         <div className="mt-10 grid gap-8 sm:grid-cols-3">
           {others.map((p) => (
             <Link

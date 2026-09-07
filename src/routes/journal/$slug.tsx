@@ -65,7 +65,7 @@ function ArticlePage() {
         </p>
       </article>
 
-      <section className="mx-auto max-w-5xl px-5 pb-20 lg:px-8">
+      <section className="shell-narrow pb-24">
         <h2 className="font-display text-2xl">Keep reading</h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {more.map((a) => (
