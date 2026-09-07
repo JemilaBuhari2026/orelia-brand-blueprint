@@ -190,7 +190,7 @@ function ProductsPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search by name, family or ingredient"
-                  className="min-h-12 w-full rounded-full border border-cocoa/20 bg-background pl-11 pr-11 text-sm text-foreground placeholder:text-muted-foreground focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+                  className="min-h-12 w-full rounded-full border border-cocoa/20 bg-background pl-11 pr-11 text-sm [&::-webkit-search-cancel-button]:appearance-none text-foreground placeholder:text-muted-foreground focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-offset-2"
                 />
                 {search ? (
                   <button
