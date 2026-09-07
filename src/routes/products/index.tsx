@@ -41,7 +41,14 @@ export const Route = createFileRoute("/products/")({
   component: ProductsPage,
 });
 
-const emptySelection: Record<string, string[]> = {
+type Selection = {
+  families: string[];
+  categories: string[];
+  statuses: string[];
+  ingredients: string[];
+};
+
+const emptySelection: Selection = {
   families: [],
   categories: [],
   statuses: [],
@@ -51,7 +58,7 @@ const emptySelection: Record<string, string[]> = {
 function ProductsPage() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<SortKey>("featured");
-  const [selected, setSelected] = useState<Record<string, string[]>>(emptySelection);
+  const [selected, setSelected] = useState<Selection>(emptySelection);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const groups: FilterGroup[] = useMemo(
@@ -101,10 +108,11 @@ function ProductsPage() {
 
   const toggle = (groupId: string, value: string) =>
     setSelected((prev) => {
-      const list = prev[groupId] ?? [];
+      const key = groupId as keyof Selection;
+      const list = prev[key];
       return {
         ...prev,
-        [groupId]: list.includes(value) ? list.filter((v) => v !== value) : [...list, value],
+        [key]: list.includes(value) ? list.filter((v) => v !== value) : [...list, value],
       };
     });
 
