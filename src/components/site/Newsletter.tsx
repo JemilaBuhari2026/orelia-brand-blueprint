@@ -58,7 +58,7 @@ export function Newsletter({
     >
       <span
         aria-hidden
-        className={`pointer-events-none absolute -left-28 bottom--20 size-[22rem] rounded-full blur-3xl ${
+        className={`pointer-events-none absolute -left-28 -bottom-20 size-[22rem] rounded-full blur-3xl ${
           purple ? "bg-accent/25" : "bg-primary/10"
         }`}
       />
