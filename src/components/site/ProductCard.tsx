@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import type { Product } from "@/lib/brand";
+import { statusCta, statusLabels, type Product } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 
 export function ProductCard({
@@ -16,23 +16,20 @@ export function ProductCard({
     <Link
       to="/products/$slug"
       params={{ slug: product.slug }}
-      className={cn(
-        "group flex flex-col focus-visible:outline-none",
-        className,
-      )}
+      className={cn("group flex h-full flex-col focus-visible:outline-none", className)}
     >
       <div className="relative overflow-hidden rounded-2xl bg-secondary">
         <img
-          src={product.image}
-          alt={product.name}
+          src={product.hero.src}
+          alt={product.hero.alt}
           loading="lazy"
           width={1024}
-          height={1024}
+          height={1280}
           className="aspect-[4/5] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045]"
         />
         {showStatus ? (
           <span className="absolute left-4 top-4 rounded-full bg-background/92 px-3 py-1 meta font-semibold text-foreground shadow-soft">
-            {product.status}
+            {statusLabels[product.status]}
           </span>
         ) : null}
       </div>
@@ -49,7 +46,19 @@ export function ProductCard({
           <ArrowUpRight className="size-4" />
         </span>
       </div>
-      <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">{product.proposition}</p>
+
+      <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
+        {product.shortDescription}
+      </p>
+
+      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+        <span className="rounded-full bg-secondary px-3 py-1 meta font-semibold text-foreground">
+          {product.heroIngredient}
+        </span>
+        <span className="text-sm font-semibold text-primary underline-offset-4 group-hover:underline">
+          {statusCta[product.status]}
+        </span>
+      </div>
     </Link>
   );
 }
