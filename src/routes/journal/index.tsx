@@ -33,7 +33,7 @@ function JournalPage() {
         intro="Gut health, the food and mood connection, African superfoods, snacking and recipes."
       />
 
-      <section className="mx-auto max-w-5xl px-5 py-20 lg:px-8">
+      <section className="shell-narrow section-y">
         <div className="grid gap-6">
           {articles.map((a) => (
             <Link

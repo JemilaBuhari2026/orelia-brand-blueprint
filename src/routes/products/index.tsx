@@ -33,7 +33,7 @@ function ProductsPage() {
         intro="Each product answers a real moment in the day — a slow morning, a long afternoon, a table full of people."
       />
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section className="shell section-y">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
             <Link

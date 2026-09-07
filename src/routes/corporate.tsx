@@ -61,7 +61,7 @@ export function CorporatePage() {
         intro="Hey! You works as an everyday product and as a gesture — for teams, guests, partners and the people you want to thank."
       />
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section className="shell section-y">
         <div className="grid gap-8 sm:grid-cols-2">
           {partners.map((p) => (
             <div key={p.title} className="rounded-3xl border border-border bg-card p-8">
@@ -73,7 +73,7 @@ export function CorporatePage() {
       </section>
 
       <section className="bg-secondary">
-        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+        <div className="shell section-y">
           <p className="eyebrow text-primary">Gifting</p>
           <h2 className="mt-3 font-display text-4xl">Built into the brand, not bolted on</h2>
           <p className="mt-4 max-w-2xl text-muted-foreground">
@@ -90,7 +90,7 @@ export function CorporatePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section className="shell section-y">
         <p className="eyebrow text-primary">What can go in a box</p>
         <div className="mt-8 grid gap-6 sm:grid-cols-3">
           {products.slice(0, 3).map((p) => (

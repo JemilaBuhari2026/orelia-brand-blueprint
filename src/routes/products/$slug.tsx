@@ -46,14 +46,14 @@ function ProductPage() {
 
   return (
     <Layout>
-      <section className="mx-auto max-w-7xl px-5 pt-10 lg:px-8">
+      <section className="shell pt-10">
         <Link to="/products" className="inline-flex items-center gap-2 text-sm font-medium text-primary">
           <ArrowLeft className="size-4" /> All products
         </Link>
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 py-12 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div className="overflow-hidden rounded-[2rem]">
+        <div className="overflow-hidden rounded-[1.75rem] shadow-lift">
           <img
             src={product.image}
             alt={product.name}
@@ -111,13 +111,13 @@ function ProductPage() {
       </section>
 
       <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-4xl px-5 py-20 lg:px-8">
+        <div className="shell-narrow section-y">
           <p className="eyebrow text-primary-foreground/70">Ingredient story</p>
           <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">{product.story}</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section className="shell section-y">
         <h2 className="font-display text-3xl">More from the range</h2>
         <div className="mt-10 grid gap-8 sm:grid-cols-3">
           {others.map((p) => (
