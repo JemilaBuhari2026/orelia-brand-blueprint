@@ -34,8 +34,8 @@ function SuperfoodsPage() {
         intro="Every ingredient we build with has been feeding people here for generations. Here is what each one brings."
       />
 
-      <section className="mx-auto max-w-7xl px-5 pt-16 lg:px-8">
-        <div className="overflow-hidden rounded-[2rem]">
+      <section className="shell pt-16">
+        <div className="overflow-hidden rounded-[1.75rem] shadow-lift">
           <img
             src={ingredientsImg}
             alt="Overhead view of baobab powder, moringa, hibiscus, millet, tiger nuts, cocoa, dates and ginger"
@@ -47,12 +47,12 @@ function SuperfoodsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <section className="shell section-y">
         <div className="grid gap-8 md:grid-cols-2">
           {ingredients.map((i) => (
-            <article key={i.name} className="rounded-3xl border border-border bg-card p-8">
-              <h2 className="font-display text-3xl">{i.name}</h2>
-              <p className="mt-2 text-sm font-medium text-accent">{i.origin}</p>
+            <article key={i.name} className="rounded-2xl border border-border bg-card p-8 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-leaf/45 hover:shadow-lift">
+              <h2 className="display-3">{i.name}</h2>
+              <p className="mt-2 eyebrow text-accent">{i.origin}</p>
               <p className="mt-5 text-muted-foreground">{i.heritage}</p>
               <p className="mt-3 text-foreground">{i.wellness}</p>
             </article>

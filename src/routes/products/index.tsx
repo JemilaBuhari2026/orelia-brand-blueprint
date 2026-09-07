@@ -1,6 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Layout, PageHero } from "@/components/site/Layout";
 import { Newsletter } from "@/components/site/Newsletter";
+import { ProductCard } from "@/components/site/ProductCard";
+import { Reveal } from "@/components/site/Reveal";
 import { products } from "@/lib/brand";
 
 export const Route = createFileRoute("/products/")({
@@ -33,34 +35,12 @@ function ProductsPage() {
         intro="Each product answers a real moment in the day — a slow morning, a long afternoon, a table full of people."
       />
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => (
-            <Link
-              key={p.slug}
-              to="/products/$slug"
-              params={{ slug: p.slug }}
-              className="group overflow-hidden rounded-3xl bg-card transition-transform hover:-translate-y-1"
-            >
-              <div className="relative">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                  className="aspect-square w-full object-cover"
-                />
-                <span className="absolute left-4 top-4 rounded-full bg-background/90 px-3 py-1 text-xs font-semibold text-foreground">
-                  {p.status}
-                </span>
-              </div>
-              <div className="p-6">
-                <p className="eyebrow text-accent">{p.family}</p>
-                <h2 className="mt-2 font-display text-2xl">{p.name}</h2>
-                <p className="mt-2 text-sm text-muted-foreground">{p.proposition}</p>
-              </div>
-            </Link>
+      <section className="shell section-y">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+          {products.map((p, i) => (
+            <Reveal key={p.slug} delay={i * 70}>
+              <ProductCard product={p} />
+            </Reveal>
           ))}
         </div>
 

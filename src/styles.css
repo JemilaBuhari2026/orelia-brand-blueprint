@@ -60,7 +60,17 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Premium elevation scale — warm brown shadows, never neutral grey */
+  --shadow-hairline: 0 1px 0 0 color-mix(in oklab, var(--hey-you-cocoa) 8%, transparent);
+  --shadow-soft: 0 2px 8px -2px color-mix(in oklab, var(--hey-you-cocoa) 12%, transparent);
+  --shadow-lift: 0 18px 40px -24px color-mix(in oklab, var(--hey-you-cocoa) 45%, transparent);
+  --shadow-editorial: 0 40px 80px -44px color-mix(in oklab, var(--hey-you-cocoa) 60%, transparent);
+
+  /* Motion */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 
 :root {
   --radius: 0.9rem;
@@ -209,5 +219,120 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* --- Typography scale ------------------------------------------------- */
+
+@utility display-1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+@utility display-2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+@utility display-3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.16;
+  letter-spacing: -0.018em;
+}
+
+@utility lede {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.65;
+}
+
+@utility meta {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+/* --- Layout ----------------------------------------------------------- */
+
+@utility shell {
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility shell-narrow {
+  margin-inline: auto;
+  max-width: 48rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 4.5rem;
+  @media (min-width: 1024px) {
+    padding-block: 7rem;
+  }
+}
+
+/* --- Motion ----------------------------------------------------------- */
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.75s var(--ease-brand),
+    transform 0.75s var(--ease-brand);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--hey-you-purple) 25%, transparent);
+  }
+}
+
+/* Fine grain paper texture for large brand fields */
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: radial-gradient(currentColor 0.5px, transparent 0.6px);
+    background-size: 4px 4px;
   }
 }

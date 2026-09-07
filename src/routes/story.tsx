@@ -33,7 +33,7 @@ function StoryPage() {
         intro="It should feel like something you want to come back to."
       />
 
-      <section className="mx-auto max-w-4xl px-5 py-20 lg:px-8">
+      <section className="shell-narrow section-y">
         <div className="space-y-14">
           <div>
             <p className="eyebrow text-primary">Purpose</p>
@@ -63,7 +63,7 @@ function StoryPage() {
       </section>
 
       <section className="bg-secondary">
-        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+        <div className="shell section-y">
           <p className="eyebrow text-primary">What we hold to</p>
           <h2 className="mt-3 font-display text-4xl">Our values</h2>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -77,7 +77,7 @@ function StoryPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-5 py-20 lg:px-8">
+      <section className="shell-narrow section-y">
         <p className="eyebrow text-primary">Founder story</p>
         <h2 className="mt-3 font-display text-4xl">Where this began</h2>
         <div className="mt-6 space-y-5 text-lg leading-relaxed text-muted-foreground">

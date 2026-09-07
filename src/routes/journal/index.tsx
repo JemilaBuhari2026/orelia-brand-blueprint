@@ -1,6 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Layout, PageHero } from "@/components/site/Layout";
 import { Newsletter } from "@/components/site/Newsletter";
+import { ArticleCard } from "@/components/site/ArticleCard";
+import { Reveal } from "@/components/site/Reveal";
 import { articles } from "@/lib/brand";
 
 export const Route = createFileRoute("/journal/")({
@@ -33,20 +35,12 @@ function JournalPage() {
         intro="Gut health, the food and mood connection, African superfoods, snacking and recipes."
       />
 
-      <section className="mx-auto max-w-5xl px-5 py-20 lg:px-8">
-        <div className="grid gap-6">
-          {articles.map((a) => (
-            <Link
-              key={a.slug}
-              to="/journal/$slug"
-              params={{ slug: a.slug }}
-              className="rounded-3xl border border-border bg-card p-8 transition-colors hover:border-primary/50"
-            >
-              <p className="eyebrow text-accent">{a.cluster}</p>
-              <h2 className="mt-3 font-display text-3xl leading-snug">{a.title}</h2>
-              <p className="mt-3 text-muted-foreground">{a.excerpt}</p>
-              <p className="mt-5 text-xs text-muted-foreground">{a.readingTime}</p>
-            </Link>
+      <section className="shell-narrow section-y">
+        <div className="grid gap-6 md:grid-cols-2">
+          {articles.map((a, i) => (
+            <Reveal key={a.slug} delay={i * 70} className="flex">
+              <ArticleCard article={a} className="w-full" />
+            </Reveal>
           ))}
         </div>
       </section>
