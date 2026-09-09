@@ -4,6 +4,14 @@ import { Layout } from "@/components/site/Layout";
 import { Newsletter } from "@/components/site/Newsletter";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Reveal } from "@/components/site/Reveal";
+import { Parallax } from "@/components/site/Motion";
+import {
+  HeyYouBlob,
+  HeyYouBurst,
+  HeyYouFloatingDecoration,
+  HeyYouHeart,
+  HeyYouSpark,
+} from "@/components/site/Decor";
 import {
   getProduct,
   getProductFaqs,
@@ -56,10 +64,10 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <Reveal>
       <h2 className="eyebrow text-primary">{eyebrow}</h2>
       <div className="mt-3 text-foreground">{children}</div>
-    </div>
+    </Reveal>
   );
 }
 
@@ -93,18 +101,34 @@ function ProductPage() {
         </ol>
       </nav>
 
-      <section className="mx-auto grid max-w-7xl gap-12 px-5 py-10 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div className="overflow-hidden rounded-[1.75rem] shadow-lift">
-          <img
-            src={product.hero.src}
-            alt={product.hero.alt}
-            width={1024}
-            height={1280}
-            className="aspect-[4/5] w-full object-cover"
-          />
+      <section className="relative mx-auto grid max-w-7xl gap-12 px-5 py-10 lg:grid-cols-2 lg:gap-16 lg:px-8">
+        <HeyYouBlob tone="purple" shape="a" opacity={0.14} blur className="-left-32 top-10 size-[26rem]" />
+        <HeyYouBlob tone="lime" shape="b" opacity={0.3} blur className="-right-24 bottom-0 size-80" />
+
+        <div className="relative">
+          <Parallax speed={-0.05}>
+            <div className="overflow-hidden rounded-[2rem] shadow-editorial">
+              <img
+                src={product.hero.src}
+                alt={product.hero.alt}
+                width={1024}
+                height={1280}
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </div>
+          </Parallax>
+          <HeyYouFloatingDecoration className="left-2 top-10 hidden sm:block" duration={11}>
+            <HeyYouBurst tone="orange" className="size-14" />
+          </HeyYouFloatingDecoration>
+          <HeyYouFloatingDecoration className="-right-4 bottom-16" duration={13} delay={0.5}>
+            <HeyYouHeart tone="lime" className="size-11" />
+          </HeyYouFloatingDecoration>
+          <HeyYouFloatingDecoration className="right-10 -top-4 hidden lg:block" duration={9} delay={1}>
+            <HeyYouSpark tone="gold" className="h-12 w-8" />
+          </HeyYouFloatingDecoration>
         </div>
 
-        <div>
+        <div className="relative">
           <p className="eyebrow text-accent">
             {product.family} · {product.category}
           </p>
@@ -180,12 +204,20 @@ function ProductPage() {
         </div>
       </section>
 
-      <section className="bg-primary text-primary-foreground">
-        <div className="shell-narrow section-y">
-          <p className="eyebrow text-primary-foreground/70">Ingredient story</p>
-          <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">
-            {product.ingredientStory}
-          </p>
+      <section className="grain relative overflow-hidden bg-primary text-primary-foreground">
+        <HeyYouBlob tone="purple-deep" shape="c" opacity={0.5} blur className="-left-24 -bottom-24 size-[26rem]" />
+        <HeyYouFloatingDecoration className="right-8 top-10" duration={14}>
+          <HeyYouSpark tone="gold" className="h-14 w-10" opacity={0.5} />
+        </HeyYouFloatingDecoration>
+        <div className="shell-narrow relative section-y">
+          <Reveal>
+            <p className="eyebrow text-lime">Ingredient story</p>
+          </Reveal>
+          <Reveal variant="blur" delay={120}>
+            <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">
+              {product.ingredientStory}
+            </p>
+          </Reveal>
         </div>
       </section>
 

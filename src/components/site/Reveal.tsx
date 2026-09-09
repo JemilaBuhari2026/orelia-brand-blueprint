@@ -1,19 +1,29 @@
 import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
+type Variant = "up" | "blur" | "mask";
+
+const variantClass: Record<Variant, string> = {
+  up: "reveal",
+  blur: "reveal-blur",
+  mask: "reveal-mask",
+};
+
 /**
- * Subtle scroll reveal. Renders fully visible during SSR and for users
+ * Level 2 — scroll reveal. Renders fully visible during SSR and for users
  * without JS or with reduced-motion enabled, so content is never hidden.
  */
 export function Reveal({
   children,
   as: Tag = "div",
   delay = 0,
+  variant = "up",
   className,
 }: {
   children: ReactNode;
   as?: ElementType;
   delay?: number;
+  variant?: Variant;
   className?: string;
 }) {
   const ref = useRef<HTMLElement | null>(null);
@@ -46,7 +56,7 @@ export function Reveal({
     <Tag
       ref={ref}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-      className={cn(armed && "reveal", armed && shown && "reveal-in", className)}
+      className={cn(armed && variantClass[variant], armed && shown && "reveal-in", className)}
     >
       {children}
     </Tag>
