@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/heyyou-logo.png";
+import logoAsset from "@/assets/heyyou-logo-master.png.asset.json";
 import { CtaLink } from "./Cta";
 import { cn } from "@/lib/utils";
 
@@ -52,11 +52,14 @@ export function Header() {
       >
         <Link to="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="Hey! You Wellness home">
           <img
-            src={logo}
+            src={logoAsset.url}
             alt="Hey! You Wellness"
-            width={567}
-            height={486}
-            className={cn("w-auto transition-[height] duration-300", scrolled ? "h-10 sm:h-11" : "h-12 sm:h-14")}
+            width={788}
+            height={1134}
+            className={cn(
+              "w-auto transition-[height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              scrolled ? "h-12 sm:h-14" : "h-14 sm:h-[4.5rem]",
+            )}
           />
         </Link>
 
