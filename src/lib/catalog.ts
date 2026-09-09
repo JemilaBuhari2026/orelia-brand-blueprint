@@ -23,8 +23,10 @@ import crunchsticksModelOneAsset from "@/assets/crunch-sticks-model-current-1.pn
 import crunchsticksModelTwoAsset from "@/assets/crunch-sticks-model-current-2.png.asset.json";
 import crunchsticksModelThreeAsset from "@/assets/crunch-sticks-model-current-3.png.asset.json";
 import cocoaboost from "@/assets/product-cocoaboost.jpg";
+import cocoaBoostAsset from "@/assets/cocoa-boost-current.png.asset.json";
 import superfoods from "@/assets/product-superfoods.jpg";
 import naijacola from "@/assets/product-naijacola.jpg";
+import naijaColaAsset from "@/assets/naija-cola-current.png.asset.json";
 
 export type ProductStatus =
   | "available"
