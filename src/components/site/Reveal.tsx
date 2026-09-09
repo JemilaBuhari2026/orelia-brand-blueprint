@@ -36,6 +36,13 @@ export function Reveal({
     const node = ref.current;
     if (!node) return;
 
+    // Already on screen at mount — never hide it.
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setShown(true);
+      return;
+    }
+
     setArmed(true);
     const observer = new IntersectionObserver(
       (entries) => {
@@ -46,19 +53,29 @@ export function Reveal({
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -5% 0px", threshold: 0 },
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
+  const visible = !armed || shown;
+
   return (
     <Tag
       ref={ref}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={{
+        ...(delay && !shown ? { transitionDelay: `${delay}ms` } : null),
+        // Inline styles guarantee content is visible once revealed, regardless
+        // of utility class ordering.
+        ...(visible
+          ? { opacity: 1, transform: "none", filter: "none", clipPath: "none" }
+          : null),
+      }}
       className={cn(armed && variantClass[variant], armed && shown && "reveal-in", className)}
     >
       {children}
     </Tag>
   );
 }
+
