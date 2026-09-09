@@ -117,7 +117,7 @@ function ProductPage() {
               />
             </div>
           </Parallax>
-          <HeyYouFloatingDecoration className="-left-5 top-10 hidden sm:block" duration={11}>
+          <HeyYouFloatingDecoration className="left-2 top-10 hidden sm:block" duration={11}>
             <HeyYouBurst tone="orange" className="size-14" />
           </HeyYouFloatingDecoration>
           <HeyYouFloatingDecoration className="-right-4 bottom-16" duration={13} delay={0.5}>
@@ -206,8 +206,8 @@ function ProductPage() {
 
       <section className="grain relative overflow-hidden bg-primary text-primary-foreground">
         <HeyYouBlob tone="purple-deep" shape="c" opacity={0.5} blur className="-left-24 -bottom-24 size-[26rem]" />
-        <HeyYouFloatingDecoration className="right-8 top-10 opacity-50" duration={14}>
-          <HeyYouSpark tone="lime" className="h-14 w-10" />
+        <HeyYouFloatingDecoration className="right-8 top-10" duration={14}>
+          <HeyYouSpark tone="gold" className="h-14 w-10" opacity={0.5} />
         </HeyYouFloatingDecoration>
         <div className="shell-narrow relative section-y">
           <Reveal>
