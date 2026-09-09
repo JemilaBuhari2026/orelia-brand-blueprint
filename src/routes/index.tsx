@@ -150,8 +150,8 @@ function Home() {
           blur
           className="-right-32 -top-24 size-[30rem]"
         />
-        <HeyYouFloatingDecoration className="left-6 top-10 opacity-40" duration={14}>
-          <HeyYouSpark tone="lime" className="h-16 w-11" />
+        <HeyYouFloatingDecoration className="left-6 top-10" duration={14}>
+          <HeyYouSpark tone="gold" className="h-16 w-11" opacity={0.55} />
         </HeyYouFloatingDecoration>
 
         <div className="shell relative section-y">
