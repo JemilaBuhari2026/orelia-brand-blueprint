@@ -296,9 +296,9 @@ export const products: Product[] = [
     featured: true,
     order: 4,
     hero: {
-      src: cocoaboost,
-      alt: "Cocoa Boost, a cocoa and baobab drink, shown as a temporary development image",
-      imageStatus: "development-placeholder",
+      src: cocoaBoostAsset.url,
+      alt: "Hey! You Cocoa Boost can — a cocoa water and baobab drink",
+      imageStatus: "approved-photography",
     },
     shortDescription:
       "A cocoa and baobab drink that brings together two of West Africa's most powerful ingredients.",
@@ -318,7 +318,7 @@ export const products: Product[] = [
     seoTitle: "Cocoa Boost — Hey! You Wellness",
     seoDescription:
       "Cocoa Boost is a cocoa and baobab drink built on two of West Africa's best known ingredients.",
-    image: cocoaboost,
+    image: cocoaBoostAsset.url,
     proposition:
       "A cocoa and baobab drink that brings together two of West Africa's most powerful ingredients.",
   },
@@ -373,9 +373,9 @@ export const products: Product[] = [
     featured: false,
     order: 6,
     hero: {
-      src: naijacola,
-      alt: "Naija Cola, a kola nut craft cola concept, shown as a temporary development image",
-      imageStatus: "development-placeholder",
+      src: naijaColaAsset.url,
+      alt: "Hey! You Naija Cola bottle and can — a kola nut craft cola",
+      imageStatus: "approved-photography",
     },
     shortDescription:
       "A craft cola built on kola nut, the ingredient the world's colas were named after.",
@@ -391,7 +391,7 @@ export const products: Product[] = [
     seoTitle: "Naija Cola — Hey! You Wellness",
     seoDescription:
       "Naija Cola is a concept in development: a craft cola built on kola nut, where cola began.",
-    image: naijacola,
+    image: naijaColaAsset.url,
     proposition: "A craft cola built on kola nut, the ingredient the world's colas were named after.",
   },
 ];
