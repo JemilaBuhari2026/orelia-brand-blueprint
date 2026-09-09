@@ -117,6 +117,22 @@ function ProductPage() {
               />
             </div>
           </Parallax>
+          {product.gallery?.length ? (
+            <div className="mt-5 grid grid-cols-3 gap-3">
+              {product.gallery.map((image) => (
+                <div key={image.src} className="overflow-hidden rounded-2xl bg-secondary">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    loading="lazy"
+                    width={768}
+                    height={1024}
+                    className="aspect-[3/4] w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : null}
           <HeyYouFloatingDecoration className="left-2 top-10 hidden sm:block" duration={11}>
             <HeyYouBurst tone="orange" className="size-14" />
           </HeyYouFloatingDecoration>

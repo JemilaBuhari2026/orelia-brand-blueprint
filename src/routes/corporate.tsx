@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout, PageHero } from "@/components/site/Layout";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { products } from "@/lib/brand";
+import vendingMachineAsset from "@/assets/vending-machine-current.png.asset.json";
 
 export const Route = createFileRoute("/corporate")({
   head: () => ({
@@ -62,6 +63,13 @@ export function CorporatePage() {
       />
 
       <section className="shell section-y">
+        <img
+          src={vendingMachineAsset.url}
+          alt="Hey! You Wellness vending machine stocked with drinks, snacks and superfoods"
+          width={768}
+          height={824}
+          className="mb-8 aspect-[4/3] w-full rounded-3xl object-cover object-center"
+        />
         <div className="grid gap-8 sm:grid-cols-2">
           {partners.map((p) => (
             <div key={p.title} className="rounded-3xl border border-border bg-card p-8">

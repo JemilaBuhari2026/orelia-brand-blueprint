@@ -18,7 +18,10 @@
  */
 import furafrost from "@/assets/product-furafrost.jpg";
 import moodbars from "@/assets/product-moodbars.jpg";
-import crunchsticks from "@/assets/product-crunchsticks.jpg";
+import crunchsticksAsset from "@/assets/crunch-sticks-current.png.asset.json";
+import crunchsticksModelOneAsset from "@/assets/crunch-sticks-model-current-1.png.asset.json";
+import crunchsticksModelTwoAsset from "@/assets/crunch-sticks-model-current-2.png.asset.json";
+import crunchsticksModelThreeAsset from "@/assets/crunch-sticks-model-current-3.png.asset.json";
 import cocoaboost from "@/assets/product-cocoaboost.jpg";
 import superfoods from "@/assets/product-superfoods.jpg";
 import naijacola from "@/assets/product-naijacola.jpg";
@@ -241,10 +244,27 @@ export const products: Product[] = [
     featured: false,
     order: 3,
     hero: {
-      src: crunchsticks,
-      alt: "Crunch Sticks, baked cassava sticks, shown as a temporary development image",
-      imageStatus: "development-placeholder",
+      src: crunchsticksAsset.url,
+      alt: "Hey! You Crunch Sticks in their current purple product packaging",
+      imageStatus: "approved-photography",
     },
+    gallery: [
+      {
+        src: crunchsticksModelOneAsset.url,
+        alt: "Hey! You model wearing purple branded clothing and carrying an orange branded tote",
+        imageStatus: "approved-photography",
+      },
+      {
+        src: crunchsticksModelTwoAsset.url,
+        alt: "Hey! You model holding a packet of Crunch Sticks in a shopping centre",
+        imageStatus: "approved-photography",
+      },
+      {
+        src: crunchsticksModelThreeAsset.url,
+        alt: "Hey! You model wearing a hijab and holding a packet of Crunch Sticks in a shopping centre",
+        imageStatus: "approved-photography",
+      },
+    ],
     shortDescription:
       "Baked cassava sticks with real crunch — the accessible first taste of Hey! You.",
     tasteProfile: "Golden, crisp and savoury, seasoned lightly so the cassava keeps its character.",
@@ -259,7 +279,7 @@ export const products: Product[] = [
     seoTitle: "Crunch Sticks — Hey! You Wellness",
     seoDescription:
       "Crunch Sticks are baked cassava sticks — the accessible first taste of Hey! You Wellness.",
-    image: crunchsticks,
+    image: crunchsticksAsset.url,
     proposition: "Baked cassava sticks with real crunch — the accessible first taste of Hey! You.",
   },
   {
