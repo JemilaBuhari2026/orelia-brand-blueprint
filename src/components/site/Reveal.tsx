@@ -56,8 +56,24 @@ export function Reveal({
       { rootMargin: "0px 0px -5% 0px", threshold: 0 },
     );
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Safety net: content is never allowed to stay invisible.
+    const onScroll = () => {
+      const r = node.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        setShown(true);
+        observer.disconnect();
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
+
 
   const visible = !armed || shown;
 
