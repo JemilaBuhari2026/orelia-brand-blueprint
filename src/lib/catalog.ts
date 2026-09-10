@@ -110,6 +110,13 @@ export type Product = {
   size?: string;
   variants?: ProductVariant[];
 
+  /**
+   * Commerce extension (SPRINT 3, architecture only). Left undefined while no
+   * real commercial data exists — see `getProductCommerce`.
+   */
+  commerce?: ProductCommerce;
+
+
   faqs?: ProductFaq[];
   relatedSlugs?: string[];
 
