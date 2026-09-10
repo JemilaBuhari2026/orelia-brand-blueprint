@@ -540,3 +540,12 @@ export function filterProducts(query: CatalogueQuery): Product[] {
     return a.order - b.order;
   });
 }
+
+/**
+ * Commerce record for a product. Returns the product's own commerce data when
+ * real commercial data has been entered, otherwise a safe "not ready, not
+ * priced, not sellable" default. No values are ever invented here.
+ */
+export function getProductCommerce(product: Product): ProductCommerce {
+  return product.commerce ?? defaultProductCommerce(product.slug);
+}
