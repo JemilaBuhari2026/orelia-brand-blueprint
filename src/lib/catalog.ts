@@ -27,6 +27,11 @@ import cocoaBoostAsset from "@/assets/cocoa-boost-current.png.asset.json";
 import superfoods from "@/assets/product-superfoods.jpg";
 import naijacola from "@/assets/product-naijacola.jpg";
 import naijaColaAsset from "@/assets/naija-cola-current.png.asset.json";
+import {
+  defaultProductCommerce,
+  type ProductCommerce,
+} from "@/lib/commerce";
+
 
 export type ProductStatus =
   | "available"
@@ -109,6 +114,13 @@ export type Product = {
 
   size?: string;
   variants?: ProductVariant[];
+
+  /**
+   * Commerce extension (SPRINT 3, architecture only). Left undefined while no
+   * real commercial data exists — see `getProductCommerce`.
+   */
+  commerce?: ProductCommerce;
+
 
   faqs?: ProductFaq[];
   relatedSlugs?: string[];
@@ -527,4 +539,13 @@ export function filterProducts(query: CatalogueQuery): Product[] {
     if (a.featured !== b.featured) return a.featured ? -1 : 1;
     return a.order - b.order;
   });
+}
+
+/**
+ * Commerce record for a product. Returns the product's own commerce data when
+ * real commercial data has been entered, otherwise a safe "not ready, not
+ * priced, not sellable" default. No values are ever invented here.
+ */
+export function getProductCommerce(product: Product): ProductCommerce {
+  return product.commerce ?? defaultProductCommerce(product.slug);
 }
