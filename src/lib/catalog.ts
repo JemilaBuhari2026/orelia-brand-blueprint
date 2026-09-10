@@ -27,6 +27,11 @@ import cocoaBoostAsset from "@/assets/cocoa-boost-current.png.asset.json";
 import superfoods from "@/assets/product-superfoods.jpg";
 import naijacola from "@/assets/product-naijacola.jpg";
 import naijaColaAsset from "@/assets/naija-cola-current.png.asset.json";
+import {
+  defaultProductCommerce,
+  type ProductCommerce,
+} from "@/lib/commerce";
+
 
 export type ProductStatus =
   | "available"
