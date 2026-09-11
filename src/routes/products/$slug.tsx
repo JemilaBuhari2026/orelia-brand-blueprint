@@ -4,6 +4,7 @@ import { Layout } from "@/components/site/Layout";
 import { Newsletter } from "@/components/site/Newsletter";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Reveal } from "@/components/site/Reveal";
+import { AddToCart } from "@/components/site/AddToCart";
 import { Parallax } from "@/components/site/Motion";
 import {
   HeyYouBlob,
@@ -158,6 +159,8 @@ function ProductPage() {
           {product.longDescription ? (
             <p className="mt-4 text-muted-foreground">{product.longDescription}</p>
           ) : null}
+
+          <AddToCart product={product} />
 
           <div className="mt-10 space-y-8">
             <Section eyebrow="How it tastes">
