@@ -3,7 +3,7 @@ import { getProduct } from "@/lib/catalog";
 import { formatMoney, useCart, MAX_LINE_QUANTITY, type CartLine } from "@/lib/cart";
 import type { CartQuote } from "@/lib/checkout.functions";
 
-export function useQuoteFor(line: CartLine, quote?: CartQuote | null) {
+export function useQuoteFor(line: CartLine, quote?: CartQuote | null | undefined) {
   return quote?.lines.find(
     (l) => l.productId === line.productId && (l.variantId ?? null) === (line.variantId ?? null),
   );
@@ -15,7 +15,7 @@ export function CartLineRow({
   compact = false,
 }: {
   line: CartLine;
-  quote?: CartQuote | null;
+  quote?: CartQuote | null | undefined;
   compact?: boolean;
 }) {
   const { setQuantity, removeLine } = useCart();
@@ -95,7 +95,7 @@ export function CartLineRow({
   );
 }
 
-export function OrderTotals({ quote }: { quote?: CartQuote | null }) {
+export function OrderTotals({ quote }: { quote?: CartQuote | null | undefined }) {
   const subtotal = formatMoney(quote?.subtotal ?? null, quote?.currency ?? null);
   const total = formatMoney(quote?.total ?? null, quote?.currency ?? null);
 
