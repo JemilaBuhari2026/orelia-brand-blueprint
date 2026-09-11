@@ -48,7 +48,7 @@ function newIdempotencyKey() {
 }
 
 function CheckoutPage() {
-  const { lines, hydrated, clear } = useCart();
+  const { lines, hydrated } = useCart();
   const { data: quote } = useCartQuote();
   const navigate = useNavigate();
   const runCheckout = useServerFn(submitCheckout);
@@ -140,7 +140,6 @@ function CheckoutPage() {
       }
       // A new submission attempt gets a fresh key; repeated taps reuse this one.
       setIdempotencyKey(newIdempotencyKey());
-      void clear;
     } catch (error) {
       const message =
         error instanceof Error && error.message
