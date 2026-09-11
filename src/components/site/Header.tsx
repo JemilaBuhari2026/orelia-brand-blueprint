@@ -101,6 +101,7 @@ export function Header() {
         >
           {open ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>
+        </div>
       </div>
 
       {open && (
