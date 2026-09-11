@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import logoAsset from "@/assets/heyyou-logo-master.png.asset.json";
 import { CtaLink } from "./Cta";
+import { CartButton } from "./CartButton";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -86,8 +87,11 @@ export function Header() {
           <CtaLink to="/contact" variant="primary">
             Say hey
           </CtaLink>
+          <CartButton className="-mr-2" />
         </div>
 
+        <div className="flex items-center gap-1 lg:hidden">
+          <CartButton />
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -97,6 +101,7 @@ export function Header() {
         >
           {open ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>
+        </div>
       </div>
 
       {open && (
