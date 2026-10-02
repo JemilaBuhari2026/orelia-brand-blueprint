@@ -58,6 +58,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "bundle_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "bundle_items_variant_id_fkey"
             columns: ["variant_id"]
             isOneToOne: false
@@ -68,52 +75,121 @@ export type Database = {
       }
       commerce_products: {
         Row: {
+          african_ingredients: string[]
           base_price: number | null
+          catalog_id: string | null
           catalog_slug: string
+          catalog_status: string
+          category: string | null
           channels: Database["public"]["Enums"]["sales_channel"][]
           commerce_status: Database["public"]["Enums"]["commerce_status"]
           compare_at_price: number | null
           created_at: string
           currency: string | null
+          family: string | null
+          family_slug: string | null
+          featured: boolean
+          flavour: string | null
+          hero_ingredient: string | null
+          how_to_enjoy: string[]
           id: string
+          ingredient_story: string | null
+          ingredients: string[]
+          long_description: string | null
+          name: string | null
           notes: string | null
           publicly_visible: boolean
+          related_slugs: string[]
+          role: string | null
           sellable: boolean
+          seo_description: string | null
+          seo_title: string | null
           shipping_class: string | null
+          short_description: string | null
+          size: string | null
+          sort_order: number
+          taste_profile: string | null
           tax_category: string | null
           updated_at: string
+          wellness_positioning: string | null
         }
         Insert: {
+          african_ingredients?: string[]
           base_price?: number | null
+          catalog_id?: string | null
           catalog_slug: string
+          catalog_status?: string
+          category?: string | null
           channels?: Database["public"]["Enums"]["sales_channel"][]
           commerce_status?: Database["public"]["Enums"]["commerce_status"]
           compare_at_price?: number | null
           created_at?: string
           currency?: string | null
+          family?: string | null
+          family_slug?: string | null
+          featured?: boolean
+          flavour?: string | null
+          hero_ingredient?: string | null
+          how_to_enjoy?: string[]
           id?: string
+          ingredient_story?: string | null
+          ingredients?: string[]
+          long_description?: string | null
+          name?: string | null
           notes?: string | null
           publicly_visible?: boolean
+          related_slugs?: string[]
+          role?: string | null
           sellable?: boolean
+          seo_description?: string | null
+          seo_title?: string | null
           shipping_class?: string | null
+          short_description?: string | null
+          size?: string | null
+          sort_order?: number
+          taste_profile?: string | null
           tax_category?: string | null
           updated_at?: string
+          wellness_positioning?: string | null
         }
         Update: {
+          african_ingredients?: string[]
           base_price?: number | null
+          catalog_id?: string | null
           catalog_slug?: string
+          catalog_status?: string
+          category?: string | null
           channels?: Database["public"]["Enums"]["sales_channel"][]
           commerce_status?: Database["public"]["Enums"]["commerce_status"]
           compare_at_price?: number | null
           created_at?: string
           currency?: string | null
+          family?: string | null
+          family_slug?: string | null
+          featured?: boolean
+          flavour?: string | null
+          hero_ingredient?: string | null
+          how_to_enjoy?: string[]
           id?: string
+          ingredient_story?: string | null
+          ingredients?: string[]
+          long_description?: string | null
+          name?: string | null
           notes?: string | null
           publicly_visible?: boolean
+          related_slugs?: string[]
+          role?: string | null
           sellable?: boolean
+          seo_description?: string | null
+          seo_title?: string | null
           shipping_class?: string | null
+          short_description?: string | null
+          size?: string | null
+          sort_order?: number
+          taste_profile?: string | null
           tax_category?: string | null
           updated_at?: string
+          wellness_positioning?: string | null
         }
         Relationships: []
       }
@@ -291,6 +367,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "order_items_variant_id_fkey"
             columns: ["variant_id"]
             isOneToOne: false
@@ -306,8 +389,10 @@ export type Database = {
           created_at: string
           currency: string | null
           customer_id: string | null
+          customer_name: string | null
           delivery_region: string | null
           discount_total: number | null
+          email: string | null
           fulfillment_status: Database["public"]["Enums"]["fulfillment_status"]
           id: string
           notes: string | null
@@ -315,15 +400,22 @@ export type Database = {
           payment_provider: string | null
           payment_reference: string | null
           payment_status: Database["public"]["Enums"]["payment_status"]
+          phone: string | null
           placed_at: string | null
           shipping_address: Json | null
+          shipping_address_line: string | null
+          shipping_city: string | null
+          shipping_country: string | null
           shipping_method: string | null
+          shipping_notes: string | null
+          shipping_state: string | null
           shipping_total: number | null
           status: Database["public"]["Enums"]["order_status"]
           subtotal: number | null
           tax_total: number | null
           total: number | null
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           billing_address?: Json | null
@@ -331,8 +423,10 @@ export type Database = {
           created_at?: string
           currency?: string | null
           customer_id?: string | null
+          customer_name?: string | null
           delivery_region?: string | null
           discount_total?: number | null
+          email?: string | null
           fulfillment_status?: Database["public"]["Enums"]["fulfillment_status"]
           id?: string
           notes?: string | null
@@ -340,15 +434,22 @@ export type Database = {
           payment_provider?: string | null
           payment_reference?: string | null
           payment_status?: Database["public"]["Enums"]["payment_status"]
+          phone?: string | null
           placed_at?: string | null
           shipping_address?: Json | null
+          shipping_address_line?: string | null
+          shipping_city?: string | null
+          shipping_country?: string | null
           shipping_method?: string | null
+          shipping_notes?: string | null
+          shipping_state?: string | null
           shipping_total?: number | null
           status?: Database["public"]["Enums"]["order_status"]
           subtotal?: number | null
           tax_total?: number | null
           total?: number | null
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           billing_address?: Json | null
@@ -356,8 +457,10 @@ export type Database = {
           created_at?: string
           currency?: string | null
           customer_id?: string | null
+          customer_name?: string | null
           delivery_region?: string | null
           discount_total?: number | null
+          email?: string | null
           fulfillment_status?: Database["public"]["Enums"]["fulfillment_status"]
           id?: string
           notes?: string | null
@@ -365,15 +468,22 @@ export type Database = {
           payment_provider?: string | null
           payment_reference?: string | null
           payment_status?: Database["public"]["Enums"]["payment_status"]
+          phone?: string | null
           placed_at?: string | null
           shipping_address?: Json | null
+          shipping_address_line?: string | null
+          shipping_city?: string | null
+          shipping_country?: string | null
           shipping_method?: string | null
+          shipping_notes?: string | null
+          shipping_state?: string | null
           shipping_total?: number | null
           status?: Database["public"]["Enums"]["order_status"]
           subtotal?: number | null
           tax_total?: number | null
           total?: number | null
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -381,6 +491,13 @@ export type Database = {
             columns: ["customer_id"]
             isOneToOne: false
             referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "orders_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -429,6 +546,54 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      product_images: {
+        Row: {
+          alt_text: string
+          created_at: string
+          id: string
+          image_ref: string
+          image_status: string
+          image_type: string
+          product_id: string
+          sort_order: number
+        }
+        Insert: {
+          alt_text: string
+          created_at?: string
+          id?: string
+          image_ref: string
+          image_status?: string
+          image_type?: string
+          product_id: string
+          sort_order?: number
+        }
+        Update: {
+          alt_text?: string
+          created_at?: string
+          id?: string
+          image_ref?: string
+          image_status?: string
+          image_type?: string
+          product_id?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_images_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "commerce_products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "product_images_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       product_variants: {
         Row: {
@@ -523,7 +688,44 @@ export type Database = {
             referencedRelation: "commerce_products"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "product_variants_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
         ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {
@@ -548,7 +750,130 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      products: {
+        Row: {
+          african_ingredients: string[] | null
+          base_price: number | null
+          catalog_id: string | null
+          catalog_slug: string | null
+          catalog_status: string | null
+          category: string | null
+          channels: Database["public"]["Enums"]["sales_channel"][] | null
+          commerce_status: Database["public"]["Enums"]["commerce_status"] | null
+          compare_at_price: number | null
+          created_at: string | null
+          currency: string | null
+          family: string | null
+          family_slug: string | null
+          featured: boolean | null
+          flavour: string | null
+          hero_ingredient: string | null
+          how_to_enjoy: string[] | null
+          id: string | null
+          ingredient_story: string | null
+          ingredients: string[] | null
+          long_description: string | null
+          name: string | null
+          notes: string | null
+          publicly_visible: boolean | null
+          related_slugs: string[] | null
+          role: string | null
+          sellable: boolean | null
+          seo_description: string | null
+          seo_title: string | null
+          shipping_class: string | null
+          short_description: string | null
+          size: string | null
+          sort_order: number | null
+          taste_profile: string | null
+          tax_category: string | null
+          updated_at: string | null
+          wellness_positioning: string | null
+        }
+        Insert: {
+          african_ingredients?: string[] | null
+          base_price?: number | null
+          catalog_id?: string | null
+          catalog_slug?: string | null
+          catalog_status?: string | null
+          category?: string | null
+          channels?: Database["public"]["Enums"]["sales_channel"][] | null
+          commerce_status?:
+            | Database["public"]["Enums"]["commerce_status"]
+            | null
+          compare_at_price?: number | null
+          created_at?: string | null
+          currency?: string | null
+          family?: string | null
+          family_slug?: string | null
+          featured?: boolean | null
+          flavour?: string | null
+          hero_ingredient?: string | null
+          how_to_enjoy?: string[] | null
+          id?: string | null
+          ingredient_story?: string | null
+          ingredients?: string[] | null
+          long_description?: string | null
+          name?: string | null
+          notes?: string | null
+          publicly_visible?: boolean | null
+          related_slugs?: string[] | null
+          role?: string | null
+          sellable?: boolean | null
+          seo_description?: string | null
+          seo_title?: string | null
+          shipping_class?: string | null
+          short_description?: string | null
+          size?: string | null
+          sort_order?: number | null
+          taste_profile?: string | null
+          tax_category?: string | null
+          updated_at?: string | null
+          wellness_positioning?: string | null
+        }
+        Update: {
+          african_ingredients?: string[] | null
+          base_price?: number | null
+          catalog_id?: string | null
+          catalog_slug?: string | null
+          catalog_status?: string | null
+          category?: string | null
+          channels?: Database["public"]["Enums"]["sales_channel"][] | null
+          commerce_status?:
+            | Database["public"]["Enums"]["commerce_status"]
+            | null
+          compare_at_price?: number | null
+          created_at?: string | null
+          currency?: string | null
+          family?: string | null
+          family_slug?: string | null
+          featured?: boolean | null
+          flavour?: string | null
+          hero_ingredient?: string | null
+          how_to_enjoy?: string[] | null
+          id?: string | null
+          ingredient_story?: string | null
+          ingredients?: string[] | null
+          long_description?: string | null
+          name?: string | null
+          notes?: string | null
+          publicly_visible?: boolean | null
+          related_slugs?: string[] | null
+          role?: string | null
+          sellable?: boolean | null
+          seo_description?: string | null
+          seo_title?: string | null
+          shipping_class?: string | null
+          short_description?: string | null
+          size?: string | null
+          sort_order?: number | null
+          taste_profile?: string | null
+          tax_category?: string | null
+          updated_at?: string | null
+          wellness_positioning?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
