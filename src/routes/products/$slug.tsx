@@ -20,12 +20,33 @@ import {
   statusLabels,
 } from "@/lib/catalog";
 import { ingredients as ingredientLibrary } from "@/lib/brand";
+import { getProductContent } from "@/lib/catalog.functions";
 
 export const Route = createFileRoute("/products/$slug")({
-  loader: ({ params }) => {
-    const product = getProduct(params.slug);
-    if (!product) throw notFound();
-    return product;
+  loader: async ({ params }) => {
+    const local = getProduct(params.slug);
+    if (!local) throw notFound();
+    // Text content comes from the database; images stay on the protected
+    // bundled asset pointers. Missing DB values keep the existing copy.
+    const db = await getProductContent({ data: { slug: params.slug } });
+    if (!db) throw notFound();
+    return {
+      ...local,
+      name: db.name,
+      family: db.family ?? local.family,
+      shortDescription: db.shortDescription ?? local.shortDescription,
+      longDescription: db.longDescription ?? local.longDescription,
+      tasteProfile: db.tasteProfile ?? local.tasteProfile,
+      heroIngredient: db.heroIngredient ?? local.heroIngredient,
+      ingredients: db.ingredients.length ? db.ingredients : local.ingredients,
+      africanIngredients: db.africanIngredients.length ? db.africanIngredients : local.africanIngredients,
+      wellnessPositioning: db.wellnessPositioning ?? local.wellnessPositioning,
+      ingredientStory: db.ingredientStory ?? local.ingredientStory,
+      howToEnjoy: db.howToEnjoy.length ? db.howToEnjoy : local.howToEnjoy,
+      size: db.size ?? local.size,
+      seoTitle: db.seoTitle ?? local.seoTitle,
+      seoDescription: db.seoDescription ?? local.seoDescription,
+    };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
