@@ -18,6 +18,7 @@ import {
   getProductFaqs,
   getRelatedProducts,
   statusLabels,
+  type Product,
 } from "@/lib/catalog";
 import { ingredients as ingredientLibrary } from "@/lib/brand";
 import { getProductContent } from "@/lib/catalog.functions";
@@ -30,12 +31,11 @@ export const Route = createFileRoute("/products/$slug")({
     // bundled asset pointers. Missing DB values keep the existing copy.
     const db = await getProductContent({ data: { slug: params.slug } });
     if (!db) throw notFound();
-    return {
+    const merged: Product = {
       ...local,
       name: db.name,
       family: db.family ?? local.family,
       shortDescription: db.shortDescription ?? local.shortDescription,
-      longDescription: db.longDescription ?? local.longDescription,
       tasteProfile: db.tasteProfile ?? local.tasteProfile,
       heroIngredient: db.heroIngredient ?? local.heroIngredient,
       ingredients: db.ingredients.length ? db.ingredients : local.ingredients,
@@ -43,10 +43,12 @@ export const Route = createFileRoute("/products/$slug")({
       wellnessPositioning: db.wellnessPositioning ?? local.wellnessPositioning,
       ingredientStory: db.ingredientStory ?? local.ingredientStory,
       howToEnjoy: db.howToEnjoy.length ? db.howToEnjoy : local.howToEnjoy,
-      size: db.size ?? local.size,
       seoTitle: db.seoTitle ?? local.seoTitle,
       seoDescription: db.seoDescription ?? local.seoDescription,
     };
+    if (db.longDescription) merged.longDescription = db.longDescription;
+    if (db.size) merged.size = db.size;
+    return merged;
   },
   head: ({ loaderData }) => ({
     meta: loaderData
