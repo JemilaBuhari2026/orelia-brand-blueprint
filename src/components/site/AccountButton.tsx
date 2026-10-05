@@ -30,8 +30,8 @@ export function AccountButton({ className }: { className?: string }) {
     );
   }
 
-  const name = (user.user_metadata?.full_name as string | undefined) ?? user.email ?? "Your account";
-  const avatar = user.user_metadata?.avatar_url as string | undefined;
+  const name = (user.user_metadata?.["full_name"] as string | undefined) ?? user.email ?? "Your account";
+  const avatar = user.user_metadata?.["avatar_url"] as string | undefined;
 
   return (
     <DropdownMenu>
