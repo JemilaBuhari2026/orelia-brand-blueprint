@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import logoAsset from "@/assets/heyyou-logo-master.png.asset.json";
 import { CtaLink } from "./Cta";
 import { CartButton } from "./CartButton";
+import { AccountButton } from "./AccountButton";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -87,10 +88,14 @@ export function Header() {
           <CtaLink to="/contact" variant="primary">
             Say hey
           </CtaLink>
-          <CartButton className="-mr-2" />
+          <div className="-mr-2 flex items-center">
+            <AccountButton />
+            <CartButton />
+          </div>
         </div>
 
         <div className="flex items-center gap-1 lg:hidden">
+          <AccountButton />
           <CartButton />
         <button
           type="button"
