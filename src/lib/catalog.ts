@@ -32,6 +32,43 @@ import {
   type ProductCommerce,
 } from "@/lib/commerce";
 
+/**
+ * Mood Bars — first purchasable product (business-confirmed: ₦12,500, 100 in
+ * stock). Mirrors commerce_products / product_variants; the server re-checks
+ * every value before quoting or adding to an account bag.
+ */
+const MOOD_BARS_VARIANT_ID = "6665b98a-1af6-4b9e-b2c0-85498eaa74be";
+const MOOD_BARS_COMMERCE: ProductCommerce = {
+  ...defaultProductCommerce("mood-bars"),
+  sellable: true,
+  commerceStatus: "live",
+  price: { amount: 12500, currency: "NGN" },
+  channels: ["dtc"],
+  defaultVariantId: MOOD_BARS_VARIANT_ID,
+  variants: [
+    {
+      id: MOOD_BARS_VARIANT_ID,
+      productId: "mood-bars",
+      name: "Mood Bars",
+      sku: null,
+      barcode: null,
+      isDefault: true,
+      price: { amount: 12500, currency: "NGN" },
+      compareAtPrice: { amount: null, currency: null },
+      packSize: null,
+      unit: null,
+      availability: "in_stock",
+      inventoryTracked: true,
+      inventoryQuantity: 100,
+      lowStockThreshold: null,
+      preorder: false,
+      weightGrams: null,
+      dimensions: { lengthMm: null, widthMm: null, heightMm: null },
+      channels: ["dtc"],
+    },
+  ],
+};
+
 
 export type ProductStatus =
   | "available"
@@ -215,7 +252,7 @@ export const products: Product[] = [
     familySlug: "food-x-mood",
     category: "Snacks",
     role: "Viral / social product",
-    status: "coming-soon",
+    status: "available",
     featured: true,
     order: 2,
     hero: {
@@ -239,6 +276,7 @@ export const products: Product[] = [
       "In a bag, for the days that run long",
     ],
     relatedSlugs: ["crunch-sticks", "cocoa-boost", "furafrost"],
+    commerce: MOOD_BARS_COMMERCE,
     seoTitle: "Mood Bars — Hey! You Wellness",
     seoDescription:
       "Mood Bars are a cocoa, date and tiger nut snack bar designed for the middle of a long day.",

@@ -3,15 +3,16 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Loader2 } from "lucide-react";
 import logoAsset from "@/assets/heyyou-logo-master.png.asset.json";
 import { lovable } from "@/integrations/lovable/index";
+import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
       { title: "Sign in — Hey! You Wellness" },
-      { name: "description", content: "Sign in to Hey! You Wellness with your Google account." },
+      { name: "description", content: "Sign in to Hey! You Wellness with Google or email." },
       { property: "og:title", content: "Sign in — Hey! You Wellness" },
-      { property: "og:description", content: "Sign in to Hey! You Wellness with your Google account." },
+      { property: "og:description", content: "Sign in to Hey! You Wellness with Google or email." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
@@ -25,6 +26,53 @@ function AuthPage() {
   const navigate = useNavigate();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [notice, setNotice] = useState<string | null>(null);
+
+  async function handleEmail(e: React.FormEvent) {
+    e.preventDefault();
+    setError(null);
+    setNotice(null);
+    const cleanEmail = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (password.length < 8) {
+      setError("Your password needs at least 8 characters.");
+      return;
+    }
+    setBusy(true);
+    if (mode === "signup") {
+      const { data, error: err } = await supabase.auth.signUp({
+        email: cleanEmail,
+        password,
+        options: { emailRedirectTo: window.location.origin },
+      });
+      setBusy(false);
+      if (err) {
+        setError(/registered|exists/i.test(err.message) ? "An account with this email already exists. Try signing in." : err.message);
+        return;
+      }
+      if (!data.session) {
+        setNotice("Check your email to confirm your account, then sign in.");
+        setMode("signin");
+        setPassword("");
+      }
+      return;
+    }
+    const { error: err } = await supabase.auth.signInWithPassword({ email: cleanEmail, password });
+    setBusy(false);
+    if (err) {
+      setError(
+        /confirm/i.test(err.message)
+          ? "Please confirm your email first — check your inbox for the link."
+          : "That email and password don't match. Please try again.",
+      );
+    }
+  }
 
   useEffect(() => {
     if (!loading && user) navigate({ to: "/", replace: true });
@@ -74,9 +122,65 @@ function AuthPage() {
           {busy ? "Connecting to Google…" : "Continue with Google"}
         </button>
 
+        <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-wider text-muted-foreground">
+          <span className="h-px flex-1 bg-border" />
+          or
+          <span className="h-px flex-1 bg-border" />
+        </div>
+
+        <form onSubmit={handleEmail} noValidate className="space-y-3 text-left">
+          <label className="block text-sm font-medium text-foreground">
+            Email
+            <input
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1.5 w-full rounded-xl border border-border bg-card px-4 py-3 text-base text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            />
+          </label>
+          <label className="block text-sm font-medium text-foreground">
+            Password
+            <input
+              type="password"
+              autoComplete={mode === "signup" ? "new-password" : "current-password"}
+              required
+              minLength={8}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1.5 w-full rounded-xl border border-border bg-card px-4 py-3 text-base text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            />
+          </label>
+          <button
+            type="submit"
+            disabled={busy || loading}
+            className="w-full rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
+          >
+            {mode === "signup" ? "Create account" : "Sign in with email"}
+          </button>
+        </form>
+
+        <button
+          type="button"
+          onClick={() => {
+            setMode((m) => (m === "signin" ? "signup" : "signin"));
+            setError(null);
+            setNotice(null);
+          }}
+          className="mt-4 text-sm font-medium text-primary hover:underline"
+        >
+          {mode === "signin" ? "New here? Create an account" : "Already have an account? Sign in"}
+        </button>
+
         <p role="alert" aria-live="polite" className="mt-4 min-h-5 text-sm text-destructive">
           {error}
         </p>
+        {notice ? (
+          <p role="status" className="text-sm text-foreground">
+            {notice}
+          </p>
+        ) : null}
 
         <Link to="/" className="mt-6 inline-block text-sm font-medium text-muted-foreground hover:text-foreground">
           ← Back to the shop
